@@ -75,6 +75,12 @@ importers:
 
   packages/agent:
     dependencies:
+      '@chat-tutor/canvas':
+        specifier: workspace:*
+        version: link:../canvas
+      '@chat-tutor/shared':
+        specifier: workspace:*
+        version: link:../shared
       xsai:
         specifier: 0.4.0-beta.8
         version: 0.4.0-beta.8(arktype@2.1.25)(zod-to-json-schema@3.24.6(zod@3.25.76))(zod@3.25.76)
@@ -90,15 +96,6 @@ importers:
       jsxgraph:
         specifier: ^1.12.0
         version: 1.12.0
-
-  packages/canvas-resolver:
-    dependencies:
-      '@chat-tutor/shared':
-        specifier: workspace:*
-        version: link:../shared
-      arktype:
-        specifier: ^2.1.25
-        version: 2.1.25
 
   packages/pkg: {}
 
