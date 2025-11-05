@@ -2,8 +2,6 @@
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faBars, faAdd } from '@fortawesome/free-solid-svg-icons'
 
-const iconButton = ['hover:bg-gray-300', 'rounded-lg', 'p-2', 'hover:transition-all', 'duration-300', 'text-gray-500']
-
 const collapsed = ref(false)
 
 type Chat = {
@@ -24,32 +22,28 @@ const chats: Ref<Chat[]> = ref([
 <template>
   <div class="min-h-screen w-full bg-gray-50 flex flex-row">
     <div
-      class="h-screen bg-gray-200 max-h-screen flex flex-col p-5"
+      class="h-screen bg-gray-200 max-h-screen flex flex-col p-5 shadow-lg"
       :class="{ 'w-80': collapsed }"
     >
-      <FontAwesomeIcon
-        :icon="faBars"
-        :class="iconButton"
-        @click="collapsed = !collapsed"
-      />
+      <ButtonContainer @click="collapsed = !collapsed" class="size-10 justify-center items-center flex">
+        <FontAwesomeIcon :icon="faBars" />
+      </ButtonContainer>
       <div class="flex h-full flex-col py-5 gap-10">
-        <div
-          class="flex flex-row w-full items-center gap-10 cursor-pointer select-none"
-          :class="iconButton"
-        >
+        <ButtonContainer class="flex flex-row w-full items-center justify-center gap-5 cursor-pointer select-none">
           <FontAwesomeIcon :icon="faAdd" />
           <span v-show="collapsed">New Chat</span>
-        </div>
+        </ButtonContainer>
         <div
           v-show="collapsed"
           class="flex flex-col gap-5 text-gray-600"
         >
-          <h2 class="text-sm font-bold select-none">Recent</h2>
-          <div
+          <h2 class="text-sm font-bold select-none">
+            Recent
+          </h2>
+          <ButtonContainer
             v-for="chat in chats"
             :key="chat.id"
             class="text-sm w-full cursor-pointer select-none p-2"
-            :class="iconButton"
           >
             <div class="flex flex-row items-center gap-5">
               <div class="flex flex-col">
@@ -57,7 +51,7 @@ const chats: Ref<Chat[]> = ref([
                 <p>{{ chat.date.toLocaleDateString() }}</p>
               </div>
             </div>
-          </div>
+          </ButtonContainer>
         </div>
       </div>
     </div>
